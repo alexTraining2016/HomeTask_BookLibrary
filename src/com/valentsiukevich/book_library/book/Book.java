@@ -59,7 +59,6 @@ public class Book {
             newAuthors = new ArrayList<>();
             newAuthors.add("");
         }
-
         properties.put(Property.AUTHOR, newAuthors);
     }
 
@@ -116,7 +115,7 @@ public class Book {
     private String getStringDescription() {
         String stringDescription = properties.get(Property.DESCRIPTION).get(0);
         for (int i = 1; i < properties.get(Property.DESCRIPTION).size(); i++) {
-            stringDescription += properties.get(Property.DESCRIPTION).get(i) + "\n";
+            stringDescription += "\n" + properties.get(Property.DESCRIPTION).get(i);
         }
         return stringDescription;
     }
