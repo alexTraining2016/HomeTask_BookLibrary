@@ -58,6 +58,10 @@ public class Library {
     }
 
     public ArrayList<Book> find(int value, Property property) {
+        if (property != Property.YEAR_OF_PUBLISHING) {
+            books = new ArrayList<>();
+            return books;
+        }
         ArrayList<Book> findBooks = new ArrayList<>();
         for (Book book : books) {
             if (Integer.valueOf(book.getValue(property).get(0)) == value) {
@@ -65,20 +69,23 @@ public class Library {
             }
         }
         books = findBooks;
-        return findBooks;
+        return books;
     }
 
     public ArrayList<Book> find(String value, Property property) {
+        if (property == Property.YEAR_OF_PUBLISHING) {
+            books = new ArrayList<>();
+            return books;
+        }
         ArrayList<Book> findBooks = new ArrayList<>();
         value = value.toLowerCase();
-        if (property != Property.YEAR_OF_PUBLISHING)
-            for (Book book : books) {
-                if ((book.getValue(property).get(0).toLowerCase()).contains(value)) {
-                    findBooks.add(book);
-                }
+        for (Book book : books) {
+            if ((book.getValue(property).get(0).toLowerCase()).contains(value)) {
+                findBooks.add(book);
             }
+        }
         books = findBooks;
-        return findBooks;
+        return books;
     }
     //------------------------------------------------------------------------------------------------------------------
 }
