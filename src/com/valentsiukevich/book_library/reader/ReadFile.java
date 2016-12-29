@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class ReadFile {
     public static ArrayList<Book> readAllBooks(String nameTextFile) {
         ArrayList<Book> books = new ArrayList<>();
@@ -44,11 +43,7 @@ public class ReadFile {
             while ((property = reader.readLine()) != null) {
                 String[] splitProperty = property.split(" ");
                 String key = splitProperty[0];
-                String value = "";
-                for (int i = 1; i < splitProperty.length - 1; i++) {
-                    value += splitProperty[i] + " ";
-                }
-                value += splitProperty[splitProperty.length - 1];
+                String value = getValue(splitProperty);
                 if (properties.get(key) != null) {
                     valueTemp = properties.get(key);
                 } else {
@@ -61,5 +56,14 @@ public class ReadFile {
             System.out.println(ex.getMessage());
         }
         return properties;
+    }
+
+    private static String getValue(String[] property) {
+        String value = "";
+        for (int i = 1; i < property.length - 1; i++) {
+            value += property[i] + " ";
+        }
+        value += property[property.length - 1];
+        return value;
     }
 }
